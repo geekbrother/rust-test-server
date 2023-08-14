@@ -1,0 +1,12 @@
+{
+  "server":{
+    "address":"0.0.0.0:8888"
+  },
+  "animals":{
+    "default":"any",
+    "facts":{
+      "dog":"https://dog-api.kinduff.com/api/facts",
+      "cat":"https://cat-fact.herokuapp.com/facts/random"
+    }
+  }
+}

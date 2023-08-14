@@ -1,0 +1,4 @@
+edition="2021"
+wrap_comments=true
+tab_spaces=2
+max_width=80
