@@ -9,8 +9,7 @@ permissions:
 
 jobs:
   release:
-    runs-on:
-      group: ubuntu-latest
+    runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.clean_version.outputs.version }}
     steps:
@@ -25,11 +24,10 @@ jobs:
           token: ${{ secrets.GITHUB_PAT }}
           
   build-container:
-    runs-on:
-      group: ubuntu-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        file: [Dockerfile, slim.Dockerfile]
+        file: [Dockerfile]
     needs:
       - release
     steps:
