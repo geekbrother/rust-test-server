@@ -10,7 +10,7 @@ permissions:
 jobs:
   release:
     runs-on:
-      group: ubuntu-runners
+      group: ubuntu-latest
     outputs:
       version: ${{ steps.clean_version.outputs.version }}
     steps:
