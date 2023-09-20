@@ -1,0 +1,39 @@
+name: release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    runs-on:
+      group: ubuntu-runners
+    outputs:
+      version: ${{ steps.clean_version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Install lld and llvm
+        run: sudo apt-get install -y lld llvm
+      - name: Update and commit the release version
+        uses: WalletConnect/actions/github/update-rust-version/@2.1.4
+        with:
+          token: ${{ secrets.GITHUB_PAT }}
+          
+  build-container:
+    runs-on:
+      group: ubuntu-runners
+    strategy:
+      matrix:
+        file: [Dockerfile, slim.Dockerfile]
+    needs:
+      - release
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
